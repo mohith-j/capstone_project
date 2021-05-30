@@ -15,9 +15,8 @@ st.write("[Live](https://rp5.ru/Weather_in_New_Delhi,_Safdarjung_(airport)) Weat
 
 st.sidebar.header('User Input Parameters')
 
-
 # API details
-API_KEY = 'acf6b2c17ce7439c51557ef26a8d7c54'
+API_KEY = ''
 lat = '28.55'
 lon = '77.10'
 exclude = 'minute,alerts,daily'
