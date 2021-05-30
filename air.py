@@ -84,12 +84,20 @@ st.subheader('User Input Parameters')
 st.write(df[['Hour']])
 
 st.subheader('Forecasted Parameters at that Time')
-st.write(df)
+st.write(df[['Temperature', 'Atmospheric_Pressure', 'Relative_Humidity', 'Wind_Dir', 'Wind_Speed']])
+st.write(df[['PM10', 'NO', 'NO2', 'NH3', 'CO', 'SO2']])
+
+
+
 data_pol = requests.get(url_pol)
 data_pol = data_pol.json()
 
+# printing API forecasted PM 2.5 value
 i = df['Hour'][0]
 st.write(data_pol['list'][i]['components']['pm2_5'])
+
+
+
 # building the model
 with open("delhi_xgb.bin", 'rb') as f_in:
   model = pickle.load(f_in)
