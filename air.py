@@ -16,7 +16,7 @@ st.write("[Live](https://rp5.ru/Weather_in_New_Delhi,_Safdarjung_(airport)) Weat
 st.sidebar.header('User Input Parameters')
 
 # API details
-API_KEY = ''
+API_KEY = 'acf6b2c17ce7439c51557ef26a8d7c54'
 lat = '28.55'
 lon = '77.10'
 exclude = 'minute,alerts,daily'
@@ -84,10 +84,20 @@ st.subheader('User Input Parameters')
 st.write(df[['Hour']])
 
 st.subheader('Forecasted Parameters at that Time')
-st.write(df)
+st.write(df[['Temperature', 'Atmospheric_Pressure', 'Relative_Humidity', 'Wind_Dir', 'Wind_Speed']])
+st.write(df[['PM10', 'NO', 'NO2', 'NH3', 'CO', 'SO2']])
+
+
+
 data_pol = requests.get(url_pol)
 data_pol = data_pol.json()
-st.write(data_pol['list'][44]['components']['pm2_5'])
+
+# printing API forecasted PM 2.5 value
+i = df['Hour'][0]
+st.write(data_pol['list'][i]['components']['pm2_5'])
+
+
+
 # building the model
 with open("delhi_xgb.bin", 'rb') as f_in:
   model = pickle.load(f_in)
