@@ -87,7 +87,9 @@ st.subheader('Forecasted Parameters at that Time')
 st.write(df)
 data_pol = requests.get(url_pol)
 data_pol = data_pol.json()
-st.write(data_pol['list'][44]['components']['pm2_5'])
+
+i = df['Hour'][0]
+st.write(data_pol['list'][i]['components']['pm2_5'])
 # building the model
 with open("delhi_xgb.bin", 'rb') as f_in:
   model = pickle.load(f_in)
